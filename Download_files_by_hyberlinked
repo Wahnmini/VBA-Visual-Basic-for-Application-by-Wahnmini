@@ -1,0 +1,16 @@
+Sub OpenHyperlinksInBrowser()
+    Dim ws As Worksheet
+    Dim rng As Range
+    Dim cell As Range
+    Dim HyperlinkURL As String
+
+    Set ws = ThisWorkbook.Sheets("Paste File")
+    Set rng = ws.Range("E2:E2000") ' Adjust as needed
+
+    For Each cell In rng
+        If cell.Hyperlinks.Count > 0 Then
+            HyperlinkURL = cell.Hyperlinks(1).Address
+            ThisWorkbook.FollowHyperlink Address:=HyperlinkURL, NewWindow:=True
+        End If
+    Next cell
+End Sub
